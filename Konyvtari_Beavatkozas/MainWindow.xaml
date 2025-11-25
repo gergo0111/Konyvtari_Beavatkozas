@@ -28,7 +28,7 @@
 			<RadioButton Content="diák"/>
 			<RadioButton Content="nyugdíjas"/>
 		</StackPanel>
-		<Button Content="Mentés" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Top" Height="307" Width="619" FontSize="69" Background="#FFC6B8E6"/>
+		<Button x:Name="btn_submit" Content="Mentés" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Top" Height="307" Width="619" FontSize="69" Background="#FFC6B8E6" Click="btn_submit_Click"/>
 
 
 	</Grid>

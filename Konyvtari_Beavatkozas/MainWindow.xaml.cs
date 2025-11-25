@@ -26,5 +26,9 @@ namespace Konyvtari_Beavatkozas
 			e.Handled = !int.TryParse(e.Text, out _);
 		}
 
+		private void btn_submit_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
