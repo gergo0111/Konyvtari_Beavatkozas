@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
 namespace Konyvtari_Beavatkozas
@@ -8,16 +9,15 @@ namespace Konyvtari_Beavatkozas
 	public partial class MainWindow : Window
 	{
 		private ObservableCollection<string> listaOlvasokNevek = new ObservableCollection<string>();
+
 		private readonly string fajlUtvonal = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "olvasok.txt");
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			lstOlvasok.ItemsSource = listaOlvasokNevek;
-		}
 
-		private void Ablak_Betoltve(object sender, RoutedEventArgs e)
-		{
+			lstOlvasok.ItemsSource = listaOlvasokNevek;
+
 			BetoltFajlbol();
 		}
 
@@ -41,28 +41,29 @@ namespace Konyvtari_Beavatkozas
 			}
 			catch (Exception ex)
 			{
-				txtStatus.Text = "Hiba a beolvasáskor: " + ex.Message;
-				txtStatus.Foreground = System.Windows.Media.Brushes.Red;
+				var status = this.FindName("txtStatus") as TextBlock;
+				if (status != null)
+				{
+					status.Text = "Hiba a beolvasáskor: " + ex.Message;
+					status.Foreground = System.Windows.Media.Brushes.Red;
+				}
 			}
 		}
 
-		// Regisztráció gomb eseménye
-		private void Regisztralas_Gomb_Click(object sender, RoutedEventArgs e)
+		private Olvaso LetrehozOlvasot()
 		{
 			var nev = txtNev.Text.Trim();
-			if (string.IsNullOrEmpty(nev))
-			{
-				txtStatus.Text = "A név megadása kötelező.";
-				txtStatus.Foreground = System.Windows.Media.Brushes.Red;
-				return;
-			}
-
 			int.TryParse(txtEletkor.Text.Trim(), out int eletkor);
-			var mufaj = txtMufaj.Text.Trim();
-			bool ertesites = chkErtesites.IsChecked == true;
-			bool tagsag = chkTagsag.IsChecked == true;
 
-			var olvaso = new Olvaso
+			string mufaj = string.Empty;
+			if (cmbMufaj.SelectedItem is ComboBoxItem cbi)
+				mufaj = cbi.Content?.ToString() ?? string.Empty;
+
+			bool ertesites = (chkHirlevel.IsChecked == true) || (chkSMS.IsChecked == true);
+
+			bool tagsag = (rbNormal.IsChecked == true) || (rbDiak.IsChecked == true) || (rbNyugdijas.IsChecked == true);
+
+			return new Olvaso
 			{
 				Nev = nev,
 				Eletkor = eletkor,
@@ -70,6 +71,23 @@ namespace Konyvtari_Beavatkozas
 				Ertesites = ertesites,
 				Tagsag = tagsag
 			};
+		}
+
+		private void BtnMentes_Click(object sender, RoutedEventArgs e)
+		{
+			var nev = txtNev.Text.Trim();
+			if (string.IsNullOrEmpty(nev))
+			{
+				var status = this.FindName("txtStatus") as TextBlock;
+				if (status != null)
+				{
+					status.Text = "A név megadása kötelező.";
+					status.Foreground = System.Windows.Media.Brushes.Red;
+				}
+				return;
+			}
+
+			var olvaso = LetrehozOlvasot();
 
 			try
 			{
@@ -77,19 +95,30 @@ namespace Konyvtari_Beavatkozas
 
 				listaOlvasokNevek.Add(olvaso.Nev);
 
-				txtStatus.Text = "Regisztráció sikeres.";
-				txtStatus.Foreground = System.Windows.Media.Brushes.Green;
+				var status2 = this.FindName("txtStatus") as TextBlock;
+				if (status2 != null)
+				{
+					status2.Text = "Regisztráció sikeres.";
+					status2.Foreground = System.Windows.Media.Brushes.Green;
+				}
 
 				txtNev.Clear();
 				txtEletkor.Clear();
-				txtMufaj.Clear();
-				chkErtesites.IsChecked = false;
-				chkTagsag.IsChecked = false;
+				cmbMufaj.SelectedIndex = -1;
+				chkHirlevel.IsChecked = false;
+				chkSMS.IsChecked = false;
+				rbNormal.IsChecked = false;
+				rbDiak.IsChecked = false;
+				rbNyugdijas.IsChecked = false;
 			}
 			catch (Exception ex)
 			{
-				txtStatus.Text = "Hiba mentés közben: " + ex.Message;
-				txtStatus.Foreground = System.Windows.Media.Brushes.Red;
+				var status3 = this.FindName("txtStatus") as TextBlock;
+				if (status3 != null)
+				{
+					status3.Text = "Hiba mentés közben: " + ex.Message;
+					status3.Foreground = System.Windows.Media.Brushes.Red;
+				}
 			}
 		}
 	}
