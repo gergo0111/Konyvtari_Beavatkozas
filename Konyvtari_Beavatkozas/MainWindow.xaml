@@ -1,35 +1,34 @@
 ﻿<Window x:Class="Konyvtari_Beavatkozas.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Konyvtari_Beavatkozas"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-	<Grid>
-		<TextBox HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-		<TextBox HorizontalAlignment="Left" Margin="143,29,0,0" TextWrapping="Wrap" PreviewTextInput="Életkor: " VerticalAlignment="Top" Width="120"/>
-		<TextBox HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Felhasználó neve:" VerticalAlignment="Top" Width="120"/>
-		<TextBox HorizontalAlignment="Left" Margin="145,6,0,0" TextWrapping="Wrap" Text="Felhasználó életkora:" VerticalAlignment="Top" Width="120"/>
-		<TextBox HorizontalAlignment="Left" Margin="275,7,0,0" TextWrapping="Wrap" Text="Kedvenc műfaja:" VerticalAlignment="Top" Width="120"/>
-		<ComboBox HorizontalAlignment="Left" Margin="273,31,0,0" VerticalAlignment="Top" Width="120">
-			<ComboBoxItem Content="Sci-fi"/>
-			<ComboBoxItem Content="Romantikus"/>
-			<ComboBoxItem Content="Krimi"/>
-			<ComboBoxItem Content="Fantasy"/>
-			<ComboBoxItem Content="Történelmi"/>
-		</ComboBox>
-		<StackPanel Margin="405,33,218,346">
-			<CheckBox Content="hírlevél feliratkozás"/>
-			<CheckBox Content="SMS értesítés"/>
-		</StackPanel>
-		<StackPanel Margin="582,32,41,335">
-			<RadioButton Content="normál"/>
-			<RadioButton Content="diák"/>
-			<RadioButton Content="nyugdíjas"/>
-		</StackPanel>
-		<Button x:Name="btn_submit" Content="Mentés" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Top" Height="307" Width="619" FontSize="69" Background="#FFC6B8E6" Click="btn_submit_Click"/>
+        Title="Olvasó regisztráció" Height="350" Width="500"
+        Loaded="Ablak_Betoltve">
+	<Grid Margin="10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
 
+		<StackPanel Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Top">
+			<TextBlock Text="Név:" Margin="0,0,0,4"/>
+			<TextBox x:Name="txtNev" />
 
+			<TextBlock Text="Életkor:" Margin="0,8,0,4"/>
+			<TextBox x:Name="txtEletkor" />
+
+			<TextBlock Text="Műfaj:" Margin="0,8,0,4"/>
+			<TextBox x:Name="txtMufaj" />
+
+			<CheckBox x:Name="chkErtesites" Content="Kérek értesítést" Margin="0,8,0,0"/>
+			<CheckBox x:Name="chkTagsag" Content="Tagság" Margin="0,4,0,0"/>
+
+			<Button x:Name="btnRegisztral" Content="Regisztrálás" Click="Regisztralas_Gomb_Click" Margin="0,10,0,0" Width="120"/>
+			<TextBlock x:Name="txtStatus" Margin="0,8,0,0" Foreground="Green" TextWrapping="Wrap"/>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1" VerticalAlignment="Top">
+			<TextBlock Text="Regisztrált olvasók:" FontWeight="Bold" />
+			<ListBox x:Name="lstOlvasok" Height="220" />
+		</StackPanel>
 	</Grid>
 </Window>
