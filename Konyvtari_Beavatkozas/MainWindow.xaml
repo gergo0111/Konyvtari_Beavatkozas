@@ -23,6 +23,11 @@
 			<CheckBox Content="hírlevél feliratkozás"/>
 			<CheckBox Content="SMS értesítés"/>
 		</StackPanel>
+		<StackPanel Margin="582,32,41,335">
+			<RadioButton Content="normál"/>
+			<RadioButton Content="diák"/>
+			<RadioButton Content="nyugdíjas"/>
+		</StackPanel>
 
 
 	</Grid>
