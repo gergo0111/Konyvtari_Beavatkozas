@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Konyvtari_Beavatkozas"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+	<Grid>
 		<TextBox HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 		<TextBox HorizontalAlignment="Left" Margin="143,29,0,0" TextWrapping="Wrap" PreviewTextInput="Életkor: " VerticalAlignment="Top" Width="120"/>
 		<TextBox HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Felhasználó neve:" VerticalAlignment="Top" Width="120"/>
@@ -28,6 +28,7 @@
 			<RadioButton Content="diák"/>
 			<RadioButton Content="nyugdíjas"/>
 		</StackPanel>
+		<Button Content="Mentés" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Top" Height="307" Width="619" FontSize="69" Background="#FFC6B8E6"/>
 
 
 	</Grid>
