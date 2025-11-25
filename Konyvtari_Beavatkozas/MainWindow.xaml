@@ -7,8 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-		<TextBox HorizontalAlignment="Left" Margin="10,18,0,0" TextWrapping="Wrap" Text="A felhasználó neve: " VerticalAlignment="Top" Width="120"/>
-		<TextBox HorizontalAlignment="Left" Margin="143,19,0,0" TextWrapping="Wrap" PreviewTextInput="Életkor: " VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="143,29,0,0" TextWrapping="Wrap" PreviewTextInput="Életkor: " VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="10,7,0,0" TextWrapping="Wrap" Text="Felhasználó neve:" VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="145,6,0,0" TextWrapping="Wrap" Text="Felhasználó életkora:" VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="275,7,0,0" TextWrapping="Wrap" Text="Kedvenc műfaja:" VerticalAlignment="Top" Width="120"/>
+		<ComboBox HorizontalAlignment="Left" Margin="273,31,0,0" VerticalAlignment="Top" Width="120">
+			<ComboBoxItem Content="Sci-fi"/>
+			<ComboBoxItem Content="Romantikus"/>
+			<ComboBoxItem Content="Krimi"/>
+			<ComboBoxItem Content="Fantasy"/>
+			<ComboBoxItem Content="Történelmi"/>
+		</ComboBox>
+		<StackPanel Margin="405,33,218,346">
+			<CheckBox Content="hírlevél feliratkozás"/>
+			<CheckBox Content="SMS értesítés"/>
+		</StackPanel>
+
 
 	</Grid>
 </Window>

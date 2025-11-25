@@ -25,5 +25,6 @@ namespace Konyvtari_Beavatkozas
 		{
 			e.Handled = !int.TryParse(e.Text, out _);
 		}
+
 	}
 }
